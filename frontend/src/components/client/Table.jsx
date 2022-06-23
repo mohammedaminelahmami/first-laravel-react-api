@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import edit from '../../assets/imgs/edit.png'
 import bin from '../../assets/imgs/bin.png'
 import Swal from 'sweetalert2'
 
 const Table = () => {
+
+    const [addModal, setAddModel] = useState(false);
 
     const HandleClickEdit = async ()=>{
         const { value: productName } = await Swal.fire({
@@ -54,7 +56,7 @@ const Table = () => {
                                     Category
                                 </th>
                                 <th>
-                                    <button type='submit' className='px-8 py-3 rounded-full bg-blue-600 text-white text-sm font-semibold hover:bg-blue-900 transition-all'>Add Product</button>
+                                    <button onClick={()=>{setAddModel(true)}} type='submit' className='px-8 py-3 rounded-full bg-blue-600 text-white text-sm font-semibold hover:bg-blue-900 transition-all'>Add Product</button>
                                 </th>
                                 </tr>
                             </thead>
@@ -84,6 +86,29 @@ const Table = () => {
             </div>
         </div>
         </center>
+
+        {addModal&&
+            <div className="p-20 flex justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none bg-opacityColor">
+                <div className="relative w-auto my-6 mx-auto max-w-3xl">
+                    <div className="p-10 border-0 rounded-md shadow-lg relative flex flex-col w-96 bg-white outline-none focus:outline-none modal">
+                        <div className='flex justify-center gap-14'>
+                            <p className="text-xl">Add Product</p>
+                            <button className="w-10 h-9 bg-red-600 text-white rounded-sm" onClick={()=>{setAddModel(false)}}>X</button>
+                        </div>
+                        <div className="flex justify-center gap-5 mt-5">
+                            <form className='flex flex-col gap-4'>
+                                <input type="text" className='p-4 border' placeholder='Add Product ...' />
+                                <input type="text" className='p-4 border' placeholder='Add Price ...' />
+                                <input type="text" className='p-4 border' placeholder='Add Category ...' />
+
+                                <button type='submit' className='px-6 py-3 rounded-full bg-blue-600 text-white text-xs font-semibold hover:bg-blue-900 transition-all'>Add</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
     </div>
   )
 }

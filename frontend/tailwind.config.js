@@ -4,6 +4,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors:{
+        opacityColor : "#00000066"
+      },
       screens: {
         // => @media (max-width: 1279px) { ... }
         xl: { max: "1279px" },
