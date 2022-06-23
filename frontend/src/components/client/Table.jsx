@@ -1,11 +1,25 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import edit from '../../assets/imgs/edit.png'
 import bin from '../../assets/imgs/bin.png'
 import Swal from 'sweetalert2'
+import { store } from '../../Hooks/useApi'
 
 const Table = () => {
 
     const [addModal, setAddModel] = useState(false);
+
+    // useRefs
+    const productName = useRef('');
+    const price = useRef('');
+    const category = useRef('');
+
+    const HandleAddProduct = ()=>{
+        let formData = new FormData();
+        formData.append('productName', productName.current.value);
+        formData.append('price', price.current.value);
+        formData.append('category', category.current.value);
+        return store('http://127.0.0.1:8000/api/store', formData);
+    }
 
     const HandleClickEdit = async ()=>{
         const { value: productName } = await Swal.fire({
@@ -97,11 +111,11 @@ const Table = () => {
                         </div>
                         <div className="flex justify-center gap-5 mt-5">
                             <form className='flex flex-col gap-4'>
-                                <input type="text" className='p-4 border' placeholder='Add Product ...' />
-                                <input type="text" className='p-4 border' placeholder='Add Price ...' />
-                                <input type="text" className='p-4 border' placeholder='Add Category ...' />
+                                <input type="text" ref={productName} className='p-4 border' placeholder='Add Product ...' />
+                                <input type="text" ref={price} className='p-4 border' placeholder='Add Price ...' />
+                                <input type="text" ref={category} className='p-4 border' placeholder='Add Category ...' />
 
-                                <button type='submit' className='px-6 py-3 rounded-full bg-blue-600 text-white text-xs font-semibold hover:bg-blue-900 transition-all'>Add</button>
+                                <button onClick={HandleAddProduct} type='submit' className='px-6 py-3 rounded-full bg-blue-600 text-white text-xs font-semibold hover:bg-blue-900 transition-all'>Add</button>
                             </form>
                         </div>
                     </div>
