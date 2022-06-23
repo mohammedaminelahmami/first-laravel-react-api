@@ -7,7 +7,7 @@ export const store = async (api, formData)=>{
 }
 
 // get data
-export const get = async(api, formData)=>{
-    let response = await axios.get(api, formData);
+export const get = async (api)=>{
+    let response = await axios.get(api);
     return response;
 }
