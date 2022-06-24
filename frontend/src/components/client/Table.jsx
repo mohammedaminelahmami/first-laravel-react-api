@@ -127,7 +127,7 @@ const Table = () => {
                 <div className="relative w-auto my-6 mx-auto max-w-3xl">
                     <div className="p-10 border-0 rounded-md shadow-lg relative flex flex-col w-96 bg-white outline-none focus:outline-none modal">
                         <div className='flex justify-center gap-14'>
-                            <p className="text-xl">Add Product</p>
+                            <p className="text-xl text-blue-600 font-semibold">Add Product</p>
                             <button className="w-10 h-9 bg-red-600 text-white rounded-sm" onClick={()=>{setAddModal(false)}}>X</button>
                         </div>
                         <div className="flex justify-center gap-5 mt-5">

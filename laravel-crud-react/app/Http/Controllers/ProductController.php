@@ -10,7 +10,7 @@ class ProductController extends Controller
 {
     public function index()
     {
-        return 'Hello World';
+        // return 'Hello World';
     }
 
     // function add Product
@@ -20,13 +20,13 @@ class ProductController extends Controller
         $price = $request->input('price');
         $category = $request->input('category');
         
-        // Product::create([
-        //     'productName' => $productName,
-        //     'price' => $price,
-        //     'category' => $category,
-        // ]);
+        Product::create([
+            'productName' => $productName,
+            'price' => $price,
+            'category' => $category,
+        ]);
 
-        DB::insert('INSERT INTO products (productName, price, category) VALUES (?, ?, ?)', [$productName, $price, $category]);
+        // DB::insert('INSERT INTO products (productName, price, category) VALUES (?, ?, ?)', [$productName, $price, $category]);
     }
 
     // function get Product
